@@ -84,3 +84,23 @@ const styles = StyleSheet.create({
 });
 
 export default ReusableModal;
+
+
+
+
+// in parent scrren
+{/* <ReusableModal
+      isVisible={isModalVisible}
+      onClose={toggleModal}
+      modalStyle={styles.customModal}
+      closeButtonLabel="Dismiss"
+      closeButtonStyle={styles.customCloseButton}
+      closeButtonTextStyle={styles.customCloseButtonText}
+      additionalButtons={
+        <TouchableOpacity style={styles.additionalButton} onPress={() => Alert.alert('Another Action')}>
+          <Text style={styles.additionalButtonText}>Another Action</Text>
+        </TouchableOpacity>
+      }
+    >
+      <Text style={styles.modalText}>Hello, I am a customizable modal!</Text>
+    </ReusableModal> */}
