@@ -1,22 +1,34 @@
 import { Alert, Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import ThemeIcons from '../../../Components/Common/ThemeIcons'
 import ReusableModal from '../../../Components/Common/CustomModal'
 import BottomSheet from '../../../Components/Common/BottomSheet'
 
 const LoginStack = () => {
+  interface BottomSheetRef {
+    openSheet: () => void;
+    closeSheet: () => void;
+  }
   const [isModalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
+  const bottomSheetRef = useRef<BottomSheetRef>(null);
 
+  const handleCloseSheet = () => {
+      bottomSheetRef.current?.closeSheet();
+  };
+  const handleOpenSheet = () => {
+      bottomSheetRef.current?.openSheet();
+  };
 
   return (
     <View style={styles.container}>
-    <Button title="Show Modal" onPress={toggleModal} />
-    {/* <BottomSheet /> */}
-    <ReusableModal
+    <Button title="Show Modal" onPress={handleOpenSheet } />
+    <Button title="Close Modal" onPress={handleCloseSheet} />
+   <BottomSheet ref={bottomSheetRef}/>
+   {/*  <ReusableModal
       isVisible={isModalVisible}
       onClose={toggleModal}
       modalStyle={styles.customModal}
@@ -30,7 +42,7 @@ const LoginStack = () => {
       }
     >
       <Text style={styles.modalText}>Hello, I am a customizable modal!</Text>
-    </ReusableModal>
+    </ReusableModal> */}
   </View>
   )
 }
